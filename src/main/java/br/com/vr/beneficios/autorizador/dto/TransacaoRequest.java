@@ -8,7 +8,12 @@ public class TransacaoRequest {
     private String senhaCartao;
     private BigDecimal valor;
 
-    // Getters e Setters
+    public TransacaoRequest(String numeroCartao, String senhaCartao, BigDecimal valor) {
+        this.numeroCartao = numeroCartao;
+        this.senhaCartao = senhaCartao;
+        this.valor = valor;
+    }
+// Getters e Setters
 
     public String getNumeroCartao() {
         return numeroCartao;

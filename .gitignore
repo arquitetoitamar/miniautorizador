@@ -135,3 +135,4 @@ secrets.env
 secrets.properties
 docker/data/
 /docker/data/
+/docker/mongodb/

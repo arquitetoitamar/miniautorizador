@@ -18,7 +18,10 @@ public class CartaoRequest implements Serializable {
     @Pattern(regexp = "\\d{4}", message = "A senha deve conter apenas dígitos.")
     private String senha;
 
-    // Getters e Setters
+    public CartaoRequest(String numeroCartao, String senha) {
+        this.numeroCartao = numeroCartao;
+        this.senha = senha;
+    }
 
     public String getNumeroCartao() {
         return numeroCartao;
