@@ -7,7 +7,7 @@ services:
     container_name: mongo
     hostname: mongo
     ports:
-      - 27017:27017
+      - '27017:27017'
     environment:
       MONGO_INITDB_DATABASE: miniautorizador
       MONGO_INITDB_ROOT_USERNAME: admin
