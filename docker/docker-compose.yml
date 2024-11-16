@@ -7,13 +7,15 @@ services:
     container_name: mongo
     hostname: mongo
     ports:
-      - '27017:27017'
+      - "27017:27017"
     environment:
       MONGO_INITDB_DATABASE: miniautorizador
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: 12345678
     volumes:
-      - ./data/mongo:/data/db
+      - ../data/mongo:/data/db
+    networks:
+      - springappnetwork
 
   # Serviço MySQL
   mysql:
@@ -27,29 +29,35 @@ services:
       MYSQL_ROOT_PASSWORD: 12345678
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - ../data/mysql:/var/lib/mysql
+    networks:
+      - springappnetwork
 
   # Serviço Spring Boot
-#  spring-boot-app:
-#    image: miniautorizador:latest
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    ports:
-#      - "8080:8080"
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/miniautorizador?useSSL=false&allowPublicKeyRetrieval=true
-#      SPRING_DATASOURCE_USERNAME: root
-#      SPRING_DATASOURCE_PASSWORD: 12345678
-#      SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.cj.jdbc.Driver
-#      SPRING_DATA_MONGODB_URI: mongodb://admin:12345678@mongo:27017/miniautorizador
-#    depends_on:
-#      - mongo
-#      - mysql
+  spring-boot-app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: miniautorizador:latest
+    container_name: spring-boot-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/miniautorizador?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 12345678
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_DATA_MONGODB_URI: mongodb://admin:12345678@mongo:27017/miniautorizador
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_SECURITY_USER_NAME: username
+      SPRING_SECURITY_USER_PASSWORD: password
+    depends_on:
+      - mongo
+      - mysql
+    networks:
+      - springappnetwork
 
 networks:
   springappnetwork:
     driver: bridge
-
-volumes:
-  mysql_data:
