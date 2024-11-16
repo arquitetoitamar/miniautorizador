@@ -133,3 +133,4 @@ nbdist/
 # Arquivos de segurança
 secrets.env
 secrets.properties
+docker/data/
