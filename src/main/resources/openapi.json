@@ -1,0 +1,162 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Mini Autorizador API",
+    "description": "API para gerenciamento de cartões e transações",
+    "version": "1.0",
+    "contact": {
+      "name": "Seu Nome",
+      "email": "seu.email@exemplo.com",
+      "url": "https://www.seusite.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Servidor Local"
+    }
+  ],
+  "paths": {
+    "/cartoes": {
+      "post": {
+        "summary": "Criar um novo cartão",
+        "description": "Cria um cartão com saldo inicial de R$500,00",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CartaoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Cartão criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartaoResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Cartão já existe"
+          }
+        }
+      }
+    },
+    "/cartoes/{numeroCartao}": {
+      "get": {
+        "summary": "Consultar saldo do cartão",
+        "parameters": [
+          {
+            "name": "numeroCartao",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Saldo consultado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartaoResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cartão não encontrado"
+          }
+        }
+      }
+    },
+    "/transacoes": {
+      "post": {
+        "summary": "Realizar uma transação",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransacaoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Transação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransacaoResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Erro na transação"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CartaoRequest": {
+        "type": "object",
+        "properties": {
+          "numeroCartao": {
+            "type": "string"
+          },
+          "senha": {
+            "type": "string"
+          }
+        }
+      },
+      "CartaoResponse": {
+        "type": "object",
+        "properties": {
+          "numeroCartao": {
+            "type": "string"
+          },
+          "saldo": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "TransacaoRequest": {
+        "type": "object",
+        "properties": {
+          "numeroCartao": {
+            "type": "string"
+          },
+          "senhaCartao": {
+            "type": "string"
+          },
+          "valor": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "TransacaoResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

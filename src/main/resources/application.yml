@@ -1,0 +1,27 @@
+spring:
+  data:
+    mongodb:
+      # In Case of mongodb Repel Set
+      uri: mongodb://admin:12345678@localhost:27017/miniautorizador?authSource=admin
+      host: ${MONGO_DB_HOSTNAME:localhost}
+      port: 27017
+      username: admin
+      password: 12345678
+      database: miniautorizador
+      authentication-database: admin
+  datasource:
+    url: jdbc:mysql://localhost:3306/miniautorizador
+    username: root
+    password: 12345678
+    driver: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    show: true
+  security:
+    user:
+      name: username
+      password: password
+server:
+  port: 8080
