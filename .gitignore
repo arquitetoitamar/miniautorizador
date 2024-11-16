@@ -134,3 +134,4 @@ nbdist/
 secrets.env
 secrets.properties
 docker/data/
+/docker/data/
