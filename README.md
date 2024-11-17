@@ -1,4 +1,5 @@
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=arquitetoitamar_miniautorizador&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=arquitetoitamar_miniautorizador)
 # Mini-Autorizador - Documentação da Arquitetura
 
 ![Diagrama da Arquitetura](docs/arquitetura.png)
