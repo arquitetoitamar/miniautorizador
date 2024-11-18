@@ -2,10 +2,16 @@ package br.com.vr.beneficios.autorizador.model.cartao;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "cartoes")
 public class Cartao {

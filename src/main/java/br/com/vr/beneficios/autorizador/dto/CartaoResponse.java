@@ -1,32 +1,32 @@
 package br.com.vr.beneficios.autorizador.dto;
 
-import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-public class CartaoResponse {
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Objects;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class CartaoResponse implements Serializable {
 
     private String numeroCartao;
     private BigDecimal saldo;
 
-    public CartaoResponse(String numeroCartao, BigDecimal saldo) {
-        this.numeroCartao = numeroCartao;
-        this.saldo = saldo;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CartaoResponse that = (CartaoResponse) o;
+        return Objects.equals(numeroCartao, that.numeroCartao) &&
+                Objects.equals(saldo.doubleValue(), that.saldo.doubleValue());
     }
 
-    // Getters e Setters
-
-    public String getNumeroCartao() {
-        return numeroCartao;
-    }
-
-    public void setNumeroCartao(String numeroCartao) {
-        this.numeroCartao = numeroCartao;
-    }
-
-    public BigDecimal getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(BigDecimal saldo) {
-        this.saldo = saldo;
+    @Override
+    public int hashCode() {
+        return Objects.hash(numeroCartao, saldo);
     }
 }

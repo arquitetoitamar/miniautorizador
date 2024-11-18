@@ -15,36 +15,36 @@ import java.util.List;
 
 @Configuration
 public class SwaggerConfig implements WebMvcConfigurer {
-
-    @Bean
-    public OpenAPI customOpenAPI() {
-        return new OpenAPI()
-                .info(new Info()
-                        .title("Mini Autorizador API")
-                        .version("1.0")
-                        .description("API para gerenciamento de cartões e transações")
-                        .contact(new Contact()
-                                .name("Seu Nome")
-                                .email("seu.email@exemplo.com")
-                                .url("https://www.seusite.com"))
-                        .license(new License().name("Apache 2.0").url("http://springdoc.org")))
-                .servers(List.of(
-                        new Server().url("http://localhost:8080").description("Servidor Local")
-                ));
-    }
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/swagger-ui/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/")
-                .resourceChain(false);
-    }
-
-    @Bean
-    public GroupedOpenApi apiControllers() {
-        return GroupedOpenApi.builder()
-                .group("Autorizador")
-                .packagesToScan("br.com.vr.beneficios.autorizador.controller")
-                .build();
-    }
+//
+//    @Bean
+//    public OpenAPI customOpenAPI() {
+//        return new OpenAPI()
+//                .info(new Info()
+//                        .title("Mini Autorizador API")
+//                        .version("1.0")
+//                        .description("API para gerenciamento de cartões e transações")
+//                        .contact(new Contact()
+//                                .name("Seu Nome")
+//                                .email("seu.email@exemplo.com")
+//                                .url("https://www.seusite.com"))
+//                        .license(new License().name("Apache 2.0").url("http://springdoc.org")))
+//                .servers(List.of(
+//                        new Server().url("http://localhost:8080").description("Servidor Local")
+//                ));
+//    }
+//
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/swagger-ui/**")
+//                .addResourceLocations("classpath:/META-INF/resources/webjars/")
+//                .resourceChain(false);
+//    }
+//
+//    @Bean
+//    public GroupedOpenApi apiControllers() {
+//        return GroupedOpenApi.builder()
+//                .group("Autorizador")
+//                .packagesToScan("br.com.vr.beneficios.autorizador.controller")
+//                .build();
+//    }
 }

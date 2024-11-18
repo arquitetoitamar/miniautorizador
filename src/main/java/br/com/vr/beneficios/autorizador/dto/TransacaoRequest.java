@@ -1,41 +1,34 @@
 package br.com.vr.beneficios.autorizador.dto;
 
-import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class TransacaoRequest {
 
     private String numeroCartao;
     private String senhaCartao;
     private BigDecimal valor;
 
-    public TransacaoRequest(String numeroCartao, String senhaCartao, BigDecimal valor) {
-        this.numeroCartao = numeroCartao;
-        this.senhaCartao = senhaCartao;
-        this.valor = valor;
-    }
-// Getters e Setters
-
-    public String getNumeroCartao() {
-        return numeroCartao;
-    }
-
-    public void setNumeroCartao(String numeroCartao) {
-        this.numeroCartao = numeroCartao;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TransacaoRequest that = (TransacaoRequest) o;
+        return Objects.equals(numeroCartao, that.numeroCartao) &&
+                Objects.equals(senhaCartao, that.senhaCartao) &&
+                Objects.equals(valor.doubleValue(), that.valor.doubleValue());
     }
 
-    public String getSenhaCartao() {
-        return senhaCartao;
+    @Override
+    public int hashCode() {
+        return Objects.hash(numeroCartao, senhaCartao, valor);
     }
 
-    public void setSenhaCartao(String senhaCartao) {
-        this.senhaCartao = senhaCartao;
-    }
-
-    public BigDecimal getValor() {
-        return valor;
-    }
-
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
-    }
 }

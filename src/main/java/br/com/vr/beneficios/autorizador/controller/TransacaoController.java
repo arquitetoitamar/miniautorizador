@@ -3,6 +3,7 @@ package br.com.vr.beneficios.autorizador.controller;
 import br.com.vr.beneficios.autorizador.dto.TransacaoRequest;
 import br.com.vr.beneficios.autorizador.dto.TransacaoResponse;
 import br.com.vr.beneficios.autorizador.service.AutorizacaoService;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/transacoes")
-@Tag(name = "Cartões", description = "Operações relacionadas a cartões")
+@Tag(name = "Transacoes", description = "Operações relacionadas a transacoes")
 public class TransacaoController {
 
     private final AutorizacaoService autorizacaoService;

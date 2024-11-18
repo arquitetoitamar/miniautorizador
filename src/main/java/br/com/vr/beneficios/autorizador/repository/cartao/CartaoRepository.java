@@ -2,9 +2,11 @@ package br.com.vr.beneficios.autorizador.repository.cartao;
 
 import br.com.vr.beneficios.autorizador.model.cartao.Cartao;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Optional;
 
+@RepositoryRestResource(exported = false)
 public interface CartaoRepository extends CrudRepository<Cartao, Long> {
 
     /**

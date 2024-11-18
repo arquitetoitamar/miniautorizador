@@ -1,19 +1,13 @@
 package br.com.vr.beneficios.autorizador.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class TransacaoResponse {
 
     private String status;
-
-    public TransacaoResponse(String status) {
-        this.status = status;
-    }
-
-    // Getters e Setters
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

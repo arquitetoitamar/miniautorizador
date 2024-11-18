@@ -3,9 +3,15 @@ package br.com.vr.beneficios.autorizador.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class CartaoRequest implements Serializable {
 
     @NotBlank(message = "O número do cartão não pode estar em branco.")
@@ -18,24 +24,4 @@ public class CartaoRequest implements Serializable {
     @Pattern(regexp = "\\d{4}", message = "A senha deve conter apenas dígitos.")
     private String senha;
 
-    public CartaoRequest(String numeroCartao, String senha) {
-        this.numeroCartao = numeroCartao;
-        this.senha = senha;
-    }
-
-    public String getNumeroCartao() {
-        return numeroCartao;
-    }
-
-    public void setNumeroCartao(String numeroCartao) {
-        this.numeroCartao = numeroCartao;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 }

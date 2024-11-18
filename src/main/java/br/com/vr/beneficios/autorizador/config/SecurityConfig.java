@@ -19,7 +19,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Desativa CSRF para facilitar os testes
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api-docs/**", "/swagger-ui/**").permitAll() // Permite acesso público ao Swagger
-                        .anyRequest().authenticated() // Requer autenticação para todas as outras requisições
+                        .requestMatchers("/cartoes/**").authenticated() // Requer autenticação para a rota /cartoes
+                        .anyRequest().authenticated() // Requer autenticação para todas as outras rotas
                 )
                 .httpBasic(); // Habilita a autenticação HTTP Basic
 

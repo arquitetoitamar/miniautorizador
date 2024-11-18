@@ -1,5 +1,10 @@
 spring:
+  profiles:
+    active: default
   data:
+    rest:
+        base-path: /
+        enabled: false
     mongodb:
       uri: mongodb://${MONGO_USERNAME:admin}:${MONGO_PASSWORD:12345678}@${MONGO_HOST:localhost}:${MONGO_PORT:27017}/${MONGO_DATABASE:miniautorizador}?authSource=${MONGO_AUTH_DB:admin}
       host: ${MONGO_HOST:localhost}
