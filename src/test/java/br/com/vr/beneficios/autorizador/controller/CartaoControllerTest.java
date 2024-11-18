@@ -53,7 +53,7 @@ class CartaoControllerTest {
         // Cenário: Cartão já existe
         CartaoRequest request = new CartaoRequest("123456789", "1234");
         Cartao cartaoExistente = new Cartao("123456789", "1234");
-        CartaoResponse response = CartaoMapper.toResponse(cartaoExistente);
+        CartaoResponse response = CartaoMapper.INSTANCE.toResponse(cartaoExistente);
 
         when(cartaoService.buscarCartao("123456789")).thenReturn(Optional.of(cartaoExistente));
 

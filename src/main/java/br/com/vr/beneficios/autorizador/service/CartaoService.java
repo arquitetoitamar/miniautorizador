@@ -38,12 +38,12 @@ public class CartaoService {
      */
     public CartaoResponse criarCartao(CartaoRequest request) {
         // Converte o CartaoRequest para a entidade Cartao usando o Mapper
-        Cartao cartao = CartaoMapper.toEntity(request);
+        Cartao cartao = CartaoMapper.INSTANCE.toEntity(request);
         cartao.setSaldo(SALDO_INICIAL);
 
         // Salva o cartão no banco de dados e retorna a resposta mapeada
         Cartao cartaoCriado = cartaoRepository.save(cartao);
-        return CartaoMapper.toResponse(cartaoCriado);
+        return CartaoMapper.INSTANCE.toResponse(cartaoCriado);
     }
 
     /**
@@ -55,6 +55,6 @@ public class CartaoService {
     public Optional<CartaoResponse> obterSaldo(String numeroCartao) {
         // Busca o cartão e mapeia para o DTO de resposta
         return cartaoRepository.findByNumeroCartao(numeroCartao)
-                .map(CartaoMapper::toResponse);
+                .map(CartaoMapper.INSTANCE::toResponse);
     }
 }

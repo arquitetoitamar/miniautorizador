@@ -37,7 +37,7 @@ public class AutorizacaoService {
         if (optionalCartao.isEmpty()) {
             Transacao transacaoFalha = new Transacao(request.getNumeroCartao(), request.getValor(), "CARTAO_INEXISTENTE");
             transacaoRepository.save(transacaoFalha);
-            return TransacaoMapper.toResponse(transacaoFalha);
+            return TransacaoMapper.INSTANCE.toResponse(transacaoFalha);
         }
 
         Cartao cartao = optionalCartao.get();
@@ -48,7 +48,7 @@ public class AutorizacaoService {
             if (!"OK".equals(resultado)) {
                 Transacao transacaoFalha = new Transacao(request.getNumeroCartao(), request.getValor(), resultado);
                 transacaoRepository.save(transacaoFalha);
-                return TransacaoMapper.toResponse(transacaoFalha);
+                return TransacaoMapper.INSTANCE.toResponse(transacaoFalha);
             }
         }
 
@@ -59,6 +59,6 @@ public class AutorizacaoService {
         Transacao transacao = new Transacao(request.getNumeroCartao(), request.getValor(), "OK");
         transacaoRepository.save(transacao);
 
-        return TransacaoMapper.toResponse(transacao);
+        return TransacaoMapper.INSTANCE.toResponse(transacao);
     }
 }

@@ -39,7 +39,7 @@ public class CartaoController {
     public ResponseEntity<CartaoResponse> criarCartao(@Valid @RequestBody CartaoRequest request) {
         Optional<Cartao> cartaoExistente = cartoesService.buscarCartao(request.getNumeroCartao());
         if (cartaoExistente.isPresent()) {
-            CartaoResponse response = CartaoMapper.toResponse(cartaoExistente.get());
+            CartaoResponse response = CartaoMapper.INSTANCE.toResponse(cartaoExistente.get());
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(response);
         }
 
@@ -56,7 +56,7 @@ public class CartaoController {
     @GetMapping("/{numeroCartao}")
     public ResponseEntity<CartaoResponse> obterSaldo(@PathVariable String numeroCartao) {
         Optional<Cartao> cartao = cartoesService.buscarCartao(numeroCartao);
-        return cartao.map(c -> ResponseEntity.ok(CartaoMapper.toResponse(c)))
+        return cartao.map(c -> ResponseEntity.ok(CartaoMapper.INSTANCE.toResponse(c)))
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 }

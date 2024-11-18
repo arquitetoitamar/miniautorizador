@@ -54,7 +54,6 @@ class CartaoServiceTest {
     void deveCriarCartaoComSaldoInicial() {
         // Dados de entrada
         CartaoRequest request = new CartaoRequest("123456789", "1234");
-        Cartao cartao = new Cartao("123456789", "1234");
         Cartao cartaoCriado = new Cartao("123456789", "1234");
         cartaoCriado.setSaldo(BigDecimal.valueOf(500.00));
 
@@ -75,7 +74,7 @@ class CartaoServiceTest {
         // Dados de entrada
         Cartao cartao = new Cartao("123456789", "1234");
         cartao.setSaldo(BigDecimal.valueOf(500.00));
-        CartaoResponse expectedResponse = CartaoMapper.toResponse(cartao);
+        CartaoResponse expectedResponse = CartaoMapper.INSTANCE.toResponse(cartao);
 
         // Configura o mock
         when(cartaoRepository.findByNumeroCartao("123456789")).thenReturn(Optional.of(cartao));
