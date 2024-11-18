@@ -136,3 +136,5 @@ secrets.properties
 docker/data/
 /docker/data/
 /docker/mongodb/
+data
+/data/
